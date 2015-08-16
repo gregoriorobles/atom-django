@@ -1,4 +1,9 @@
 '.source.python.django':
+
+  'Model Skeleton':
+    'prefix': 'model'
+    'body': 'class ${1:Modelname}(models.Model):\n\t"""${2:($1 description)}"""\n\t$0\n\n\tdef __unicode__(self):\n\t\treturn "$1"\n'
+# Model fields
   'AutoField':
     'prefix': 'auto'
     'body': '${1:FIELDNAME} = models.AutoField()'
@@ -47,9 +52,6 @@
   'ManyToManyField':
     'prefix': 'manytomany'
     'body': '${1:FIELDNAME} = models.ManyToManyField(${2:RELATED_MODEL})'
-  'Model Skeleton':
-    'prefix': 'model'
-    'body': 'class ${1:Modelname}(models.Model):\n\t"""${2:($1 description)}"""\n\t$0\n\n\tdef __unicode__(self):\n\t\treturn u"$1"\n'
   'NullBooleanField':
     'prefix': 'nullboolean'
     'body': '${1:FIELDNAME} = models.NullBooleanField(${2:default=True})'
@@ -83,6 +85,68 @@
   'XMLField':
     'prefix': 'xml'
     'body': '${1:FIELDNAME} = models.XMLField(schema_path=${2:/path/to/RelaxNG}${3:, blank=True})'
+# General funcionality
   'send_mail':
     'prefix': 'sendmail'
     'body': 'mail.send_mail("${1:Subject}", "${2:Message}", "${3:from@example.com}", ${4:["to@example.com"]}${5:, fail_silently=True})\n'
+  'view skeleton':
+    'prefix': 'view'
+    'body': 'def ${1:view}(request, ${2:param}):\n\t"""${3:Docstring for view}"""\n\treturn\n'
+  'csrf_exempt decorator':
+    'prefix': 'csrfe'
+    'body': '@csrf_exempt'
+  'Import scrf_exempt decorator':
+    'prefix': 'impcsrfe'
+    'body': 'from django.views.decorators.csrf import csrf_exempt'
+  'Import HttpResponse':
+    'prefix': 'imphttpresp'
+    'body': 'from django.http import HttpResponse'
+  'New URL':
+    'prefix': 'url'
+    'body': "url(r'${1:^regex$}', ${2:app.views.func),"
+# Forms
+  'CharField Form':
+    'prefix': 'charf'
+    'body': '${1:FIELDNAME} = form.CharField(${2:blank=True}, max_length=${3:100})'
+  'DateField Form':
+    'prefix': 'datef'
+    'body': '${1:FIELDNAME} = form.DateField(${2:default=datetime.datetime.today})'
+  'DateTimeField Form':
+    'prefix': 'datetimef'
+    'body': '${1:FIELDNAME} = form.DateTimeField(${2:blank=True}${3:, default=datetime.datetime.now})'
+  'DecimalField Form':
+    'prefix': 'decimalf'
+    'body': '${1:FIELDNAME} = form.DecimalField(max_digits=$2, decimal_places=$3)'
+  'EmailField Form':
+    'prefix': 'emailf'
+    'body': '${1:FIELDNAME} = form.EmailField()'
+  'FileField Form':
+    'prefix': 'filef'
+    'body': '${1:FIELDNAME} = form.FileField(upload_to=${1:/path/for/upload})'
+  'FilePathField Form':
+    'prefix': 'filepathf'
+    'body': '${1:FIELDNAME} = form.FilePathField(path="${1:/location/of/choices}"${2:, match="${3:regex}"}${4:, recursive=True})'
+  'FloatField Form':
+    'prefix': 'floatf'
+    'body': '${1:FIELDNAME} = form.FloatField()'
+  'IPAddressField Form':
+    'prefix': 'ipaddressf'
+    'body': '${1:FIELDNAME} = form.IPAddressField(${2:blank=True})'
+  'ImageField Form':
+    'prefix': 'imagef'
+    'body': '${1:FIELDNAME} = form.ImageField(upload_to="${2:/dir/path}"${3:, height_field=$4}${5:, width_field=$6})'
+  'IntegerField Form':
+    'prefix': 'integerf'
+    'body': '${1:FIELDNAME} = form.IntegerField(${2:blank=True, null=True})'
+  'Form Skeleton':
+    'prefix': 'form'
+    'body': 'class ${1:Form}(form.Form):\n\t"""${2:($1 description)}"""\n\t$0\n\n\tdef __unicode__(self):\n\t\treturn "$1"\n'
+  'SlugField Form':
+    'prefix': 'slugf'
+    'body': '${1:slug} = form.SlugField()'
+  'TimeField Form':
+    'prefix': 'timef'
+    'body': '${1:FIELDNAME} = form.TimeField(${2:blank=True})'
+  'URLField Form':
+    'prefix': 'urlf'
+    'body': '${1:FIELDNAME} = form.URLField(${2:blank=True})'
